@@ -1,0 +1,23 @@
+<template>
+    <nav class="navbar">
+        <img class="navbar__logo" src={ABLogo} alt="Awesome Books Logo">
+        <div class="navbar__items-container">
+            <ul class="navbar__item cart" onclick={navigateToCartPage}>
+                <img src={cartIcon} alt="" class="cart__icon">
+                <p class="cart__number">{sum}</p>
+            </ul>
+            <ul class="navbar__item" onclick={navigateToHomePage}>{navbarLabels.navbarHomeItem}</ul>
+            <ul class="navbar__item" onclick={navigateToAllBooksPage}>{navbarLabels.navbarAllbooksItem}</ul>
+            <div class="navbar__changable-items" if:false={isGuest}>
+
+                <ul class="navbar__item" onclick={navigateToUserProfilPage}>{navbarLabels.navbarProfileItem}</ul>
+                <ul class="navbar__item" onclick={navigateToUserOrdersPage}>{navbarLabels.nabarOrderitem}</ul>
+                <a class="navbar__item" onclick={handleLogout}>{navbarLabels.navbarLogoutItem}</a>
+            </div>
+            <div class="navbar__changable-items" if:true={isGuest}>
+                <ul class="navbar__item" onclick={navigateToLoginPage}>{navbarLabels.navbarLoginItem}</ul>
+                <ul class="navbar__item" onclick={navigateToRegisterPage}>{navbarLabels.navbarSignUpItem}</ul>
+            </div>
+        </div>
+    </nav>
+</template>

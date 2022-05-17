@@ -1,0 +1,29 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    margin: 10px 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #D5C9AB;
+    max-height: 10px;
+    border-radius: 3px;
+    
+    
+  }
+.book__page-two::-webkit-scrollbar-thumb {
+    background: #F2E3C0;
+    height: 5px;
+    border-radius: 3px;
+    
+    
+  }
+.flipped{
+    direction:rtl;
+}
+

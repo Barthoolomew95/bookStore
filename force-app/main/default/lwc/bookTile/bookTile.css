@@ -1,0 +1,45 @@
+:host{
+    --padding-top-bottom:10px;
+    --padding-right-left:20px;
+    --image-height:150px;
+}
+
+.book{
+    position: relative;
+    height: 600px;
+    width: 800px;
+    overflow: hidden;
+    border-radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: var(--padding-top-bottom) var(--padding-right-left);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+    background-color:#F2E3C0;
+}
+.book:hover{
+    background-color:lightGray;
+    box-shadow: rgba(105, 87, 87, 0.35) 0px 5px 15px;
+}
+.book__img{
+    position: absolute;
+    top: var(--padding-top-bottom);
+    right: var(--padding-right-left);
+    height: var(--image-height);
+    
+
+    
+}
+.book__property{
+    font-weight: bold;
+}
+.book__description{
+    position: absolute;
+    top: calc(var(--padding-top-bottom) + var(--image-height) + 10px);
+    width: 90%;
+    margin: 0 auto;
+
+}
+.book__title{
+    width: 60%;
+}

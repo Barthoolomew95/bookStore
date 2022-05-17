@@ -1,0 +1,203 @@
+@import './scrollbar.css';
+@import './animation.css';
+:host{
+    --book-margin-left:50px;
+    --book-width:800px;
+    --book-height:550px
+}
+@font-face {
+    font-family: 'Gentium Book Basic', serif;
+    src: url('/resource/GentiumBookBasicFontRegular.bin');
+    font-display: swap;
+}
+.container{
+    padding: 100px 0;
+    /* justify-content: space-between; */
+    overflow:visible;
+    perspective: 400px;
+    perspective-origin:top;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+    width: 100%;
+    display: flex;
+
+}
+.book{
+    /* margin:100px 0; */
+    /* margin-bottom: 400px; */
+    /* margin-left: var(--book-margin-left); */
+    /* padding-bottom:300px; */
+    height: var(--book-height);
+    width: var(--book-width);
+    border: 1px solid #283215;
+    border-radius:10px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color:#798751;
+    z-index: 2;
+}
+.book:after{
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+    width: 80px;
+    background:#283215;
+}
+.pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 94%;
+    height: 93%;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* border:1px solid #283215;
+    border-bottom: none; */
+    z-index: 4;
+}
+.page{
+    border-top: 1px solid #E8D8B6;
+    overflow-y:scroll;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;align-items: center;
+    /* border: 1px solid #000; */
+    /* border-bottom: none; */
+}
+
+.book__page-one{  
+    background-color: #F2E3C0;
+    border-radius: 20px 0 0 0;
+}
+.book__page-one:after{
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 50%;
+    height: 60px;
+    z-index: 3;
+    background: #D8C8A7;
+    border-radius:0 0 50px 20px
+
+}
+.book__page-two{
+    /* padding-top: 1px; */
+    background-color: #D5C9AB;
+    border-radius: 0 20px 0 0;
+    text-align: left;
+}
+.book__page-two:after{
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    right: 0;
+    width: 50%;
+    height: 60px;
+    z-index: 3;
+    background: #A99F7F;
+    border-radius:0 0 20px 50px;
+
+}
+.text{
+    margin: auto; 
+    width: 90%;
+    height: 92%;
+    font-family:'Gentium Book Basic', serif;
+    text-align: center;
+}
+.book__page-one-text{
+    color: #B2AA92;
+}
+.book__page-two-text{
+    display: flex;
+    align-items: center;justify-content: center;
+    color: #847b5d;
+}
+
+.book__title{
+    margin-top: 400px; 
+    line-height: 26px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 3px;
+
+}
+.book__author{
+    font-size: 16px;
+}
+.book__cover{
+    opacity: 0.5;   
+    position: absolute;
+    top: 20px;
+    left: 25%;
+    transform: translateX(-50%);
+    width: 260px;
+}
+
+
+.bookmark{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    position: absolute;
+    top:80px;
+    right:110px;
+    height: var(--book-height);
+    width: 200px;
+    background-color:#B04230;
+    padding-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    z-index: 3;
+}
+.bookmark:after, .bookmark:before{
+    content: "";
+    position: absolute;
+    bottom: -49px;
+    right: 0;
+    height: 0;
+    width:0;
+    border-left: 100px solid transparent;
+    border-top: 50px solid #B04230;
+    z-index: 3;
+}
+.bookmark:before{
+        left: 0;  
+        border-left: none;
+        border-right: 100px solid transparent;
+}
+
+.add-to-cart{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #283215;
+}
+
+.amount-customization-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.button-submit{
+    width: 80%;
+    height: 100px;
+}
+
+
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>bs_bookList_headnig</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>bs_bookList_heading</shortDescription>
+        <value>Recent added books:</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_Login_item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar Login item</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_Logout_item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar Logout item</shortDescription>
+        <value>Logout</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_Order_items</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar Order items</shortDescription>
+        <value>Orders</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_all_Books_item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar all Books item</shortDescription>
+        <value>All Books</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_home_item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar home item</shortDescription>
+        <value>Home</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_profile_Item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar profile Item</shortDescription>
+        <value>Profile</value>
+    </labels>
+    <labels>
+        <fullName>Navbar_signUp_item</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navbar signUp item</shortDescription>
+        <value>Sign up</value>
+    </labels>
+</CustomLabels>

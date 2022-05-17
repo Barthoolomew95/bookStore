@@ -1,0 +1,14 @@
+<template>
+    <div class="book-list">
+        <h2 class="book-list__header">{label.heading}</h2>
+        <div class="book-list__items-container" if:true={books}>
+            <template for:each={books} for:item="book">
+                <c-book-tile key={book.Id} book={book}></c-book-tile>
+            </template>
+
+        </div>
+        <div class="loader__container" if:false={books}>
+            <c-loading-circle></c-loading-circle>
+        </div>
+    </div>
+</template>

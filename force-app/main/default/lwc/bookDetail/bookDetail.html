@@ -1,0 +1,38 @@
+<template>
+    <div class="container">
+        <div class="book" if:true={book}>
+            <div class="pages ">
+                <div class="book__page-one page">
+                    <div class="book__page-one-text text">
+                        <h1 class="book__title">{book.Name}</h1>
+                        <h2 class="book__author">{book.Author__c}</h2>
+                        <image class="book__cover" src={book.Image_Url__c}></image>
+
+                    </div>
+                </div>
+                <div class="book__page-two page flipped">
+                    <div class="book__page-two-text text ">
+                        <p class="book__description"> {book.Description__c}</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bookmark">
+                <p class="information__isbn info">ISBN: {book.ISBN__c}</p>
+                <p class="information__isbn info">In stock: {book.In_Stock__c}</p>
+                <p class="information__isbn info">Price: {book.Price__c} {currentCurrency}</p>
+            </div>
+        </div>
+        <c-loading-circle if:false={book}></c-loading-circle>
+        <div class="add-to-cart">
+            <div class="amount-customization-container">
+                <button class="amount-minus-one" onclick={handleAmountChange} data-id="-">-</button>
+                <label for="" class="amount">{amountValue}</label>
+                <button class="amount-plus-one" onclick={handleAmountChange} data-id="+">+</button>
+            </div>
+            <button class="button-submit" onclick={handleAddtoCart}>Add to Cart</button>
+        </div>
+
+    </div>
+</template>
