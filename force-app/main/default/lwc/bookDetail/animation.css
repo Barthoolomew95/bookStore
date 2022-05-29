@@ -1,5 +1,4 @@
-
- @keyframes book-keyframes {
+@keyframes book-keyframes {
     0% {
       transform:scaleY(0.1) translateY(100px) translateZ(100px) rotateX(90deg) ;
       transform-origin:top center;

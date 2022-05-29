@@ -56,4 +56,11 @@
         <shortDescription>Navbar signUp item</shortDescription>
         <value>Sign up</value>
     </labels>
+    <labels>
+        <fullName>footer_All_rights</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>footer_all_rights</shortDescription>
+        <value>All rights reserved</value>
+    </labels>
 </CustomLabels>

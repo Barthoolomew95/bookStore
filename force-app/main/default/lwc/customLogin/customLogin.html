@@ -1,0 +1,23 @@
+<template>
+    <div class="container">
+        <form class="login">
+            <div class="login__input-container username">
+                <label for="username-input" class="username__label">Username</label>
+                <input type="text" id="username-input" class="username__input" value="Username"
+                    onchange={handleUserNameChange}>
+            </div>
+            <div class="login__input-container password">
+                <label for="password-input" class="password__label">Password</label>
+                <input type="password" id="password-input" class="password__input" onchange={handlePasswordChange}>
+            </div>
+            <p if:true={error} class="login__error">{error}</p>
+            <input type="submit" class="btn login__submit " onclick={login} value="login">
+            <div class="login__usefull-links">
+                <button class="btn" onclick={navigateToForgotPasswordPage}>Forgot your password?</button>
+                <button class="btn" onclick={navigateToRegisterPage}>Not a member?</button>
+
+
+            </div>
+        </form>
+    </div>
+</template>

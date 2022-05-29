@@ -1,20 +1,20 @@
 import { LightningElement,track,wire,api } from 'lwc';
 import uId from '@salesforce/user/Id';
-import getUser from '@salesforce/apex/UserController.getCurrentUserContact';
+import getCustomer from '@salesforce/apex/UserController.getCurrentUserCustomer';
 export default class WelcomeUser extends LightningElement {
-    userId=uId;
+    
     @track user;
     error;
-    async getUserInfo(userID) {
+    async getCustomerInfo() {
         try{
-            this.user= await getUser({userId: userID});
+            this.user= await getCustomer({userId: uId});
         }catch(error){
             this.error=error;
         }
 
     }
     connectedCallback(){
-        this.getUserInfo(this.userId);
+        this.getCustomerInfo();
     }
     
 }

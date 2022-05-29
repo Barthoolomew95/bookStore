@@ -1,0 +1,51 @@
+<template>
+    <div if:true={userData} class="container">
+        <div if:false={editable} class="data">
+            <div class="data__field">
+                <span>Name: </span><span>{userData.Name}</span>
+            </div>
+            <div class="data__field">
+                <span>Last name: </span><span>{userData.Last_Name__c}</span>
+            </div>
+            <div class="data__field">
+                <span>Phone: </span><span>{userData.Phone__c}</span>
+            </div>
+            <div class="data__field">
+                <span>Country: </span><span>{userData.Country__c}</span>
+            </div>
+            <div class="data__field">
+                <span>City: </span><span>{userData.City__c}</span>
+            </div>
+            <div class="data__field">
+                <span>Street: </span><span>{userData.Street__c}</span>
+            </div>
+            <div class="data__buttons-container data__buttons-container--single">
+                <button data-id='edit' class="data__button" onclick={toggleEditMode}>Edit</button>
+            </div>
+        </div>
+        <div if:true={editable} class="data">
+            <div class="data__field"><span>Name: </span> <input type="text" data-id="Name" value={userData.Name}
+                    onchange={editData}></div>
+            <div class="data__field"><span>Last name: </span> <input type="text" data-id="Last_Name__c"
+                    value={userData.Last_Name__c} onchange={editData}></div>
+            <div class="data__field"><span>Phone: </span> <input type="text" data-id="Phone__c"
+                    value={userData.Phone__c} onchange={editData}></div>
+            <div class="data__field"><span>Country: </span> <input type="text" data-id="Country__c"
+                    value={userData.Country__c} onchange={editData}></div>
+            <div class="data__field"><span>City: </span> <input type="text" data-id="City__c" value={userData.City__c}
+                    onchange={editData}>
+            </div>
+            <div class="data__field"><span>Street: </span> <input type="text" data-id="Street__c"
+                    value={userData.Street__c} onchange={editData}></div>
+            <div class="data__buttons-container">
+                <button data-id='Submit' class="data__button" onclick={toggleEditMode}>Submit</button>
+                <button data-id='Cancel' class="data__button" onclick={toggleEditMode}>Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div if:false={userData} class="data-container">
+        <c-loading-circle></c-loading-circle>
+    </div>
+</template>

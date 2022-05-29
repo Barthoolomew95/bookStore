@@ -1,0 +1,32 @@
+<template>
+    <div class="container">
+        <form class="register">
+            <div class="register__input-container email">
+                <label for="email-input" class="email__label">Email</label>
+                <input type="text" id="email-input" class="email__input" value="email" onchange={handleEmailChange}>
+            </div>
+            <div class="register__input-container password">
+                <label for="password-input" class="password__label">Password</label>
+                <input type="password" id="password-input" class="password__input" onchange={handlePasswordChange}>
+            </div>
+            <div class="register__input-container password">
+                <label for="confirm-password-input" class="password__label"> Confirm Password</label>
+                <input type="password" id="confirm-password-input" class="password__input"
+                    onchange={handleConfirmPasswordChange}>
+            </div>
+            <div class="register__input-container FirstName">
+                <label for="FirstName-input" class="FirstName__label">FirstName</label>
+                <input type="FirstName" id="FirstName-input" class="FirstName__input" onchange={handleFirstNameChange}>
+            </div>
+            <div class="register__input-container LastName">
+                <label for="LastName-input" class="LastName__label">LastName</label>
+                <input type="LastName" id="LastName-input" class="LastName__input" onchange={handleLastNameChange}>
+            </div>
+            <p if:true={error} class="register__error">{error}</p>
+            <input type="submit" class="btn register__submit " onclick={register} value="Register">
+            <div class="register__usefull-links">
+                <button class="btn" onclick={navigateTologinPage}>Already a member?</button>
+            </div>
+        </form>
+    </div>
+</template>

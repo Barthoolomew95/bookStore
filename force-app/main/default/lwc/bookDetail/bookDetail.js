@@ -5,11 +5,14 @@ import {
 } from 'lightning/messageService';
 import getBook from '@salesforce/apex/BookController.getBook';
 import currency from '@salesforce/i18n/currency'
-import cart from '@salesforce/messageChannel/cart__c'
+import isGuest from '@salesforce/user/isGuest';
+import cartMC from '@salesforce/messageChannel/cart__c'
+import {updateUserCartInLocalStorage,getUserCartFromLocalStorage} from 'c/localStorageManagement'
+
 
 
 export default class BookDetail extends LightningElement {
-    
+    isGuest=isGuest
     @api recordId
     @track book
     currentCurrency=currency;
@@ -17,9 +20,6 @@ export default class BookDetail extends LightningElement {
 
     @wire(MessageContext)
     messageContext;
-
-    
-
 
     connectedCallback(){
         this.getBookData();
@@ -29,7 +29,7 @@ export default class BookDetail extends LightningElement {
         return this.amountLabelValue;
     }
     async getBookData(){
-        console.log(this.recordId)
+        
         this.book= await getBook({bookId: this.recordId});
     }
     handleAmountChange(event){
@@ -42,13 +42,35 @@ export default class BookDetail extends LightningElement {
             }
         }
     }
+ 
     handleAddtoCart(){
-        const payload = {
-            bookId: this.recordId,
-            amountOfBook: this.amountLabelValue,
-        };
-        console.log(payload.bookId+' '+ payload.amountOfBook);
-        publish(this.messageContext, cart, payload);
+        try{
+            const newCartItem = {
+                bookId: this.recordId,
+                amountOfBook: this.amountLabelValue,
+            };
+            let userCart=getUserCartFromLocalStorage();
+            let index;
+            if(userCart.cartItems.length>0){
+                index =userCart.cartItems.findIndex(book => book.bookId === newCartItem.bookId);
+                
+                if (index >= 0) {
+                    userCart.cartItems[index].amountOfBook+=newCartItem.amountOfBook;
+                }else{
+                    userCart.cartItems.push(newCartItem)
+
+                }
+            }else{
+                userCart.cartItems.push(newCartItem)
+            }
+            userCart.cartQuantity+=parseInt(newCartItem.amountOfBook);    
+
+            updateUserCartInLocalStorage(userCart);
+            publish(this.messageContext, cartMC, {sum:userCart.cartQuantity});
+
+        }catch(e){
+            console.error(e);
+        }
     }
 
 }

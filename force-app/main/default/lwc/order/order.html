@@ -1,0 +1,17 @@
+<template>
+    <div class="container">
+        <div class="order" onclick={showOrderItems}>
+            <p class="order__name">{order.Name}</p>
+            <p><span>Book quantity in order: </span>{order.Amount_of_books_in_order__c}</p>
+            <p><span>Order status: </span>{order.Status__c}</p>
+            <p><span>Order date: </span>{date}</p>
+        </div>
+        <div if:true={orderItems} class="order__items">
+            <template for:each={orderItems} for:item="orderItem">
+                <div key={orderItem}>
+                    <p class="order__item-name">{orderItem.Name}</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

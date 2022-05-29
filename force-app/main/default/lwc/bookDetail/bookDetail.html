@@ -1,5 +1,21 @@
 <template>
     <div class="container">
+        <div class="book--mobile">
+            <div class="book--mobile__image-and-info-container">
+                <c-book-tile book={book}></c-book-tile>
+                <div class="book--mobile__info-container">
+
+                    <p class="book--mobile__info title">{book.Name}</p>
+                    <p class="book--mobile__info author">{book.Author__c}</p>
+                    <p class="book--mobile__info">ISBN: {book.ISBN__c}</p>
+                    <p class="book--mobile__info">In stock: {book.In_Stock__c}</p>
+                    <p class="book--mobile__info">Price: {book.Price__c} {currentCurrency}</p>
+                </div>
+            </div>
+            <p class="book--mobile__description">
+                {book.Description__c}
+            </p>
+        </div>
         <div class="book" if:true={book}>
             <div class="pages ">
                 <div class="book__page-one page">
@@ -25,7 +41,7 @@
             </div>
         </div>
         <c-loading-circle if:false={book}></c-loading-circle>
-        <div class="add-to-cart">
+        <div if:false={isGuest} class="add-to-cart">
             <div class="amount-customization-container">
                 <button class="amount-minus-one" onclick={handleAmountChange} data-id="-">-</button>
                 <label for="" class="amount">{amountValue}</label>

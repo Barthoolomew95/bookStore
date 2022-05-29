@@ -1,0 +1,20 @@
+<template>
+    <div class="container">
+
+        <div class="filter-menu">
+            <button onclick={sortBySold}>By most sold</button>
+            <button onclick={sortByRecent}>Recent</button>
+            <button onclick={sortByAz}>Sort A-Z</button>
+        </div>
+        <div class="searchbar-and-results-container">
+            <div class="searchbar">
+                <lightning-input type="text" name="search-input" value={searchValue} onchange={onSearchInputValueChange}
+                    class="searchbar__input" placeholder="Search">
+                </lightning-input>
+
+            </div>
+            <c-book-list books={books}></c-book-list>
+        </div>
+
+    </div>
+</template>

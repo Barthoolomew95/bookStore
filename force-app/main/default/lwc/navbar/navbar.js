@@ -1,25 +1,20 @@
-import { LightningElement,api,wire,track } from 'lwc';
+import { LightningElement,wire,track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import isGuest from '@salesforce/user/isGuest';
-import newOrder from '@salesforce/apex/orderController.newOrder'
-import newOrderItem from '@salesforce/apex/orderController.newOrderItem'
-import createCustomer from '@salesforce/apex/UserController.createCustomerForUser'
-import getCurrentUserCustomer from '@salesforce/apex/UserController.getCurrentUserCustomer'
-import uId from '@salesforce/user/Id';
 import awesomeBooksLogo from '@salesforce/resourceUrl/ABLogo'
 import cartIcon from '@salesforce/resourceUrl/cartIcon'
 import basePath from "@salesforce/community/basePath";
-// import {navbarLoginItem,navbarLogoutItem,navbarOrderItem,navbarAllbooksItem,navbarProfileItem,navbarHomeItem,navbarSignUpItem} from './translations';
+
 import navbarItemsLabels from './translations';
 import { subscribe, MessageContext,unsubscribe} from 'lightning/messageService'
-import cart from '@salesforce/messageChannel/cart__c'
-
+import cartMC from '@salesforce/messageChannel/cart__c'
+import {getCartQuantity} from 'c/localStorageManagement'
 
 export default class Navbar extends NavigationMixin(LightningElement) {
     navbarLabels=navbarItemsLabels;
     @track booksInCart=[];
-    sum=0;
-
+   
+    sum=getCartQuantity();
     @wire(MessageContext)messageContext
     subscription=null;
 
@@ -29,30 +24,26 @@ export default class Navbar extends NavigationMixin(LightningElement) {
     get cartIcon(){ return cartIcon;}
    
     
-    
-    handleMessage(message){
-        const index =this.booksInCart.findIndex(book => book.bookId === message.bookId);
-        console.log(index);
-        if (index >= 0) {
-            this.booksInCart[index].amountOfBook+=message.amountOfBook;
-        }else{
-            this.booksInCart.push({
-               bookId:message.bookId,
-               amountOfBook:message.amountOfBook
-            })
-        }
-        this.sum+=parseInt(message.amountOfBook);
-        window.console.log('ilośc= '+this.booksInCart.length);
+    connectedCallback(){
+        this.subscribeToMessageChannel();
+        
     }
     subscribeToMessageChannel() {
         if (!this.subscription) {
             this.subscription = subscribe(
                 this.messageContext,
-                cart,
+                cartMC,
                 (message) => this.handleMessage(message)
             );
         }
        
+    }
+    handleMessage(message){
+        console.log(message)
+        if(message.sum!=null){
+
+            this.sum=message.sum;
+        }
     }
     unsubscribeFromMessageChannel(){
         unsubscribe(this.subscription)
@@ -63,24 +54,13 @@ export default class Navbar extends NavigationMixin(LightningElement) {
     }
     connectedCallback(){
         this.subscribeToMessageChannel();
-        // this.sum=this.amountOfBooksInCart()
     }
-    orderId='';
-    async createOrder(){ 
-        console.log('XDDD')
-         let customer = await getCurrentUserCustomer({userId:uId});
-        console.log('XDDD',customer.Id)
-        this.orderId= await newOrder({customerId:customer.Id});
-        console.log('orderId:',this.orderId);
-        for(const book of this.booksInCart){
-           await newOrderItem({
-                orderId:this.orderId,
-                bookId:book.bookId,
-                amount:book.amountOfbook})
-        }
+    toggleMenu(){
+        
+        this.template.querySelector('.navbar__items-container').classList.toggle('navbar__items-container--active')
     }
-
     navigateToHomePage() {
+        
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -89,8 +69,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToCartPage() {
-        this.createOrder();
-        window.localStorage.setItem('cart', JSON.stringify(this.booksInCart));
+       
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -99,6 +78,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToAllBooksPage() {
+       
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -107,6 +87,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToUserProfilPage(){
+        
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -115,6 +96,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToUserOrdersPage(){
+        
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -123,6 +105,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToLoginPage(){
+        
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -131,6 +114,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     navigateToRegisterPage(){
+        
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -139,7 +123,7 @@ export default class Navbar extends NavigationMixin(LightningElement) {
         });
     }
     handleLogout(){
-        const newPagePath = basePath.replace('/s', "");
+        
         const newUrl=`/secur/logout.jsp?retUrl=${basePath}`
         window.open(newUrl,'_self')
         

@@ -15,6 +15,32 @@
             label='How many Books display?'
             description="a amount of books to display"
             default="5"/>
+            <property 
+            name="headerText" 
+            type="String"
+            label='Type header text'
+            description="header text"
+            default="Recent Added Books"/>
+        
+            <property 
+            name="isReversed" 
+            type="Boolean"
+            label='Reverse it?'
+            description="changing image place from left to right"
+            default='false'/>
+            <property 
+            name="whatBooks" 
+            type="String"
+            label='books to dispaly'
+            description="available: recentBooks,bestsellers"
+            default='recentBooks'/>
+            <property 
+            name="intervalTime" 
+            type="Integer"
+            label='interval time'
+            description="time between item of carousel is changed in miliseconds"
+            default='5000'/>
+        
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

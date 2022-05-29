@@ -1,0 +1,32 @@
+.container{
+    width: 100%;
+}
+.data{
+    margin: 0 auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.data__field{
+    
+    display: flex;
+    justify-content: space-between;
+}
+.data__button{
+    width: 40%;
+    cursor: pointer;
+    justify-self: center;
+}
+input{
+    width: 50%;
+}
+.data__buttons-container{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.data__buttons-container--single{
+    display: flex;
+    justify-content: center;
+}

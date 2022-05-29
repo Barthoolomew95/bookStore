@@ -1,6 +1,9 @@
 <template>
-
-    <p if:true={user}>Witaj w swoim profilu {user.Name} {user.Last_Name__c}.</p>
-    <p if:true={error}>{error}</p>
+    <div class="container">
+        <div class="heading">
+            <p class="heading__text" if:true={user}>Witaj w swoim profilu {user.Name} {user.Last_Name__c}.</p>
+            <p class='heading__error' if:true={error}>{error}</p>
+        </div>
+    </div>
 
 </template>

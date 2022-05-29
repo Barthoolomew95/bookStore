@@ -6,29 +6,17 @@ public without sharing class UserController {
     @AuraEnabled(cacheable = true)
     public static Contact getCurrentUserContact(string userId){
         User user=[select ContactId from User where id=:userId];
-        return [select Name, MailingAddress, Customer__c from Contact where Id=:user.contactId ];
+        return [select Name, MailingAddress, Customer__c,Email from Contact where Id=:user.contactId ];
     }
     @auraenabled(cacheable=true) 
-    public static bs_Customer__C getCurrentUserCustomer(string userId){
-        User currentUser=[select ContactId from User where id=:userId];
-        Contact userContact= [select Name, MailingAddress, Customer__c from Contact where Id=:currentUser.contactId ];
-        return  [select Name, Last_Name__c, City__C,Country__C,street__C from bs_Customer__C where Id=:userContact.Customer__C ];
+    public static bs_Customer__C getCurrentUserCustomer(string userId){       
+        Contact userContact= getCurrentUserContact(userId);
+        return  [select Name, Last_Name__c, City__C,Country__C,street__C, Phone__c,Email__c from bs_Customer__C where Id=:userContact.Customer__C ];
+    }
+    @auraenabled() 
+    public static void updateCurrentUserCustomer(bs_Customer__C customerToUpdate){       
+       update customerToUpdate;
     }
     
-    @AuraEnabled(cacheable = true)
-    public static bs_Customer__c createCustomerForUser(string userId){
-            Contact userContact =getCurrentUserContact(userId);
-            bs_Customer__c newCustomer = new bs_Customer__c(
-                Name=userContact.Name.split(' ')[0],
-                Last_Name__c=userContact.Name.split(' ')[1],
-                Country__c=userContact.MailingAddress.getCountry(),
-                City__c=userContact.MailingAddress.getCity(),
-                Street__c=userContact.MailingAddress.getStreet()
-            );
-            userContact.Customer__c=newCustomer.Id;
-            insert newCustomer;
-            update userContact;
-            return newCustomer;
-        
-    }
+   
 }

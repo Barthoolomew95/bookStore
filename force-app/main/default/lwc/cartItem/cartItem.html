@@ -1,0 +1,30 @@
+<template>
+    <!-- <p if:true={book}><span class="label">Title:</span> {book.Name} <span class="label">Amount:</span> {amount} <span
+            class="label">price:</span> {price}</p> -->
+    <div class="item-container">
+        <div class="item" if:true={book}>
+            <div class="item__info-container">
+                <p class="item__info">
+                    <span class="label">Title: </span>
+                    {book.Name}
+                </p>
+                <p class="item__info">
+                    <span class="label">Price: </span>
+                    {price} {currentCurrency}
+                </p>
+            </div>
+            <div class="item__amount-controller">
+                <button class="btn" data-id="+" onclick={handleAmountChange}>
+                    <image src={addIcon} class="btn__img" alt="" data-id="+"></image>
+                </button>
+                <p class="amount">{amount}</p>
+                <button class="btn" data-id="-" onclick={handleAmountChange}>
+                    <image src={substractIcon} class="btn__img" alt="" data-id="-"></image>
+                </button>
+            </div>
+            <button class="item__cancel btn" onclick={cancelItem}>
+                <image src={addIcon} class="btn__img btn__img--close" alt="" data-id="+"></image>
+            </button>
+        </div>
+    </div>
+</template>

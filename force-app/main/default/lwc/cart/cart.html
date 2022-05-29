@@ -1,10 +1,17 @@
 <template>
 
 
-    <!-- <div for:each={books} for:item="book" for:index="index">
-        <p key={book.Id}></p>
-    </div> -->
-    <p>{firstBook}</p>
+    <div if:true={isItemsInCart}>
+        <template for:each={itemsInCart} for:item="item" for:index="index">
+            <c-cart-item recordid={item.bookId} amount={item.amountOfBook} key={item.bookId}
+                onitemsincart={hanldeItemsInCart}></c-cart-item>
+        </template>
+        <c-user-data></c-user-data>
+        <button class="btn" onclick={createOrder}>Order</button>
+
+    </div>
+
+    <div if:false={isItemsInCart}>No books in order</div>
 
 
 </template>

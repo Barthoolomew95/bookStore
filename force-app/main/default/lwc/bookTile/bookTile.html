@@ -1,11 +1,13 @@
 <template>
     <div class="book" onclick={navigateToBookDetailPage}>
-        <a href={bookDetailPageUrl}>Go to book</a>
-        <p class="book__title"><span class="book__property">Tytuł: </span>{book.Name}</p>
-        <p><span class="book__property">Autor: </span>{book.Author__c}</p>
-        <p><span class="book__property">ISBN: </span>{book.ISBN__c}</p>
-        <p class="book__description"><span class="book__property">Opis: </span>{book.Description__c}</p>
-        <image class="book__img" src={book.Image_Url__c} alt="Book Cover"></image>
-        <p>{book.In_Stock__C}</p>
+        <div class="book__front">
+            <image class="book__img" src={book.Image_Url__c} alt="Book Cover"></image>
+        </div>
+        <div class="book__back">
+            <p class="book__title">{book.Name}</p>
+            <p>{book.Author__c}</p>
+            <p>{book.Price__c} {currentCurrency}</p>
+        </div>
+        <!-- <button class="addToCart"></button> -->
     </div>
 </template>

@@ -6,14 +6,5 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
-    <targetConfigs>
-        <targetConfig targets="lightningCommunity__Default">
-            <property 
-            name="numberOfBooksToDisplay" 
-            type="String"
-            label='How many Books display?'
-            description="a amount of books to display"
-            default="5"/>
-        </targetConfig>
-    </targetConfigs>
+    
 </LightningComponentBundle>
