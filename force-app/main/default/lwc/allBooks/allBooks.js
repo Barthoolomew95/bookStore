@@ -42,12 +42,15 @@ export default class AllBooks extends LightningElement {
         }
     }
     sortBySold(){
+       this.booksAfterSearchAndFilter.sort((a,b)=>b.Sold__c-a.Sold__c
+       )
        
     }
     sortByRecent(){
+        this.booksAfterSearchAndFilter.sort((a,b)=>new Date(b.CreatedDate)-new Date(a.CreatedDate))
 
     }
     sortByAZ(){
-        
+        this.booksAfterSearchAndFilter.sort((a,b)=>a.Name.localeCompare(b.Name));
     }
 }

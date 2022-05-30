@@ -15,7 +15,7 @@ public without sharing class BookController {
     }
     @auraenabled(cacheable=true)   
     public static List<Book__c> getAllBooks(){      
-        return [select Name, ISBN__c, Author__C,In_Stock__c,Description__c,image_url__c,Price__c from Book__C];
+        return [select Name, ISBN__c, Author__C,In_Stock__c,Description__c,image_url__c,Price__c,Sold__c,createddate from Book__C];
         
     }
 
